@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import GalleryCell from "./galleryCell";
+import GalleryCell from "../galleryCell/galleryCell";
 import "./galleryCells.css";
 
 class GalleryCells extends Component {
