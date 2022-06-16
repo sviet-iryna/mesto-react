@@ -9,14 +9,15 @@ class GalleryCell extends Component {
     hederName: this.props.title,
     imgAlt: this.props.alt,
     isLikeSet: false,
+    id: this.props.id,
+    key: this.props.id,
   };
   render() {
-    let like;
-    if (this.state.isLikeSet === true) {
-      like = <SuitHeartFill size={20}></SuitHeartFill>;
-    } else {
-      like = <SuitHeart size={20}></SuitHeart>;
-    }
+    // if (this.state.isLikeSet === true) {
+    //   like = <SuitHeartFill size={20}></SuitHeartFill>;
+    // } else {
+    //   like = <SuitHeart size={20}></SuitHeart>;
+    // }
     return (
       <React.Fragment>
         <div className="gallery__cell">
@@ -26,7 +27,11 @@ class GalleryCell extends Component {
               src={this.state.imgUrl}
               alt={this.state.imgAlt}
             />
-            <button className="gallery__cell-button-delete" type="button">
+            <button
+              onClick={() => this.props.handleDelCard(this.state.id)}
+              className="gallery__cell-button-delete"
+              type="button"
+            >
               <TrashFill
                 size={20}
                 className="gallery__button-like-img"
@@ -38,7 +43,8 @@ class GalleryCell extends Component {
             <button
               className="gallery__button-like"
               onClick={() => {
-                this.state.isLikeSet = this.state.isLikeSet === false ? true : false;
+                this.state.isLikeSet =
+                  this.state.isLikeSet === false ? true : false;
                 // if (this.state.isLikeSet === false) {
                 //   this.state.isLikeSet = true;
                 // } else {
@@ -47,7 +53,11 @@ class GalleryCell extends Component {
                 this.setState(this.state);
               }}
             >
-              {like}
+              {this.state.isLikeSet === true ? (
+                <SuitHeartFill size={20}></SuitHeartFill>
+              ) : (
+                <SuitHeart size={20}></SuitHeart>
+              )}
             </button>
           </div>
         </div>
